@@ -1,0 +1,31 @@
+name: "Step 1: Prep Release"
+on:
+  workflow_dispatch:
+    inputs:
+      version_spec:
+        description: "New Version Specifier"
+        default: "next"
+        required: false
+      branch:
+        description: "The branch to target"
+        required: false
+
+jobs:
+  prep_release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+
+      - name: Prep Release
+        id: prep-release
+        uses: Yann-P/jupyter_releaser/.github/actions/prep-release@claude/vibrant-pasteur-wtuewj
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version_spec: ${{ github.event.inputs.version_spec }}
+          branch: ${{ github.event.inputs.branch }}
+
+      - name: "** Next Step **"
+        run: |
+          echo "Optional: Review Draft Release: ${{ steps.prep-release.outputs.release_url }}"

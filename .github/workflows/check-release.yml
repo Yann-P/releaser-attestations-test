@@ -1,0 +1,17 @@
+name: Check Release
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  check_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+      - name: Check Release
+        uses: Yann-P/jupyter_releaser/.github/actions/check-release@claude/vibrant-pasteur-wtuewj
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling>=1.5"]
+build-backend = "hatchling.build"
+
+[project]
+name = "yannp-releaser-attestations-test"
+description = "Throwaway package for testing PyPI attestations with Jupyter Releaser. Do not use."
+readme = "README.md"
+requires-python = ">=3.9"
+dynamic = ["version"]
+
+[tool.hatch.version]
+path = "src/yannp_releaser_attestations_test/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/yannp_releaser_attestations_test"]
